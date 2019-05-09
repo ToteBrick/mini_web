@@ -6,7 +6,7 @@ import logging
 # 配置logging日志信息, 只配置一次，整个应用程序生效
 logging.basicConfig(level=logging.INFO,
                     format="%(asctime)s-%(filename)s[%(lineno)d]-%(levelname)s:%(message)s",
-                    filename="out.txt",
+                    filename="out.log",
                     filemode="a")
 
 
