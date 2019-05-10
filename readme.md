@@ -8,3 +8,4 @@
 3.要使用加载了数据库方面的html，在本地要先建立一个stock_db的数据库，然后执行source stock_db.sql.
 
 4.修复了Linux与Wondows页面加载问题。
+

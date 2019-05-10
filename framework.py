@@ -39,7 +39,7 @@ def error():
 
 # grand页面
 @my_route('/grand.html')
-def error():
+def grand():
     # open() if encoding is not specified the encoding used is platform dependent
     with open("template/grand.html", "r", encoding='utf-8') as file:
         file_data = file.read()
