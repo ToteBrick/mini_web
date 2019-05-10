@@ -2,11 +2,11 @@ import time
 import pymysql
 import json
 import logging
+
 """处理动态资源请求的框架程序"""
 
 # 路由列表 模仿django方式开发的
 route_list = []
-
 
 
 # 带有参数的装饰器
@@ -23,6 +23,7 @@ def my_route(path):
 
     return decorator
 
+
 # 错误页面
 @my_route('/error.html')
 def error():
@@ -37,6 +38,7 @@ def error():
     # 把处理结果进行返回
     return status, headers, file_data
 
+
 # grand页面
 @my_route('/grand.html')
 def grand():
@@ -50,18 +52,20 @@ def grand():
 
     # 把处理结果进行返回
     return status, headers, file_data
+
+
 # 获取首页数据
 @my_route("/index.html")
 def index():
     # 1.读取模板文件数据
     # open() if encoding is not specified the encoding used is platform dependent
-    with open("template/index.html", "r",encoding='utf-8') as file:
+    with open("template/index.html", "r", encoding='utf-8') as file:
         file_data = file.read()
 
     # 2.从数据库查询数据
     conn = pymysql.connect(host="localhost", port=3306,
-                    user="root", password="mysql",
-                    database="stock_db", charset="utf8")
+                           user="root", password="mysql",
+                           database="stock_db", charset="utf8")
 
     # 获取游标
     cursor = conn.cursor()
@@ -147,7 +151,6 @@ def center_data():
         # 把字典添加到列表
         center_list.append(center_dict)
 
-
     # 把列表字典转成json字符串, dumps 不能把Decimal转成json数据
     # ensure_ascii 表示不使用ascii编码
     json_str = json.dumps(center_list, ensure_ascii=False)
@@ -165,7 +168,7 @@ def center_data():
 # 3. center =  decorator(center)  cenre = inner
 def center():
     # 1.读取模板文件数据
-    with open("template/center.html", "r",encoding='utf-8') as file:
+    with open("template/center.html", "r", encoding='utf-8') as file:
         file_data = file.read()
     # 2.从数据库查询数据
     # 3.把查询的数据插入到模板文件中
@@ -210,6 +213,7 @@ def handle_request(env):
         logging.error("没有设置相关路径配置:" + request_path)
         result = not_found()
         return result
+
 
 if __name__ == '__main__':
     # print(route_list)
